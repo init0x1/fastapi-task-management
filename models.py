@@ -86,3 +86,22 @@ class TaskResponse(BaseModel):
     class Config:
         from_attributes = True
 
+class APIInfo(BaseModel):
+    name: str = "FastAPI Task Management API"
+    version: str = "1.0.0"
+    description: str = "A RESTful API for managing tasks"
+    endpoints: list[str] = [
+        "GET / - API Info",
+        "GET /health - Health check",
+        "POST /tasks - Create task",
+        "GET /tasks - List All tasks",
+        "GET /tasks/{task_id} - Get task",
+        "PUT /tasks/{task_id} - Update task",
+        "DELETE /tasks/{task_id} - Delete task",
+        "GET /tasks/status/{status} - Filter by status",
+        "GET /tasks/priority/{priority} - Filter by priority"
+    ]
+
+class HealthResponse(BaseModel):
+    status: str = "healthy"
+    timestamp: datetime = Field(default_factory=datetime.utcnow) 
